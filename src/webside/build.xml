@@ -134,7 +134,7 @@
 
 	<target name="javac" depends="jgeo, libs" description="Compile java source to bytecode">
 		<mkdir dir="war/WEB-INF/classes" />
-		<javac srcdir="src" includes="**" encoding="utf-8" destdir="war/WEB-INF/classes" source="1.5" target="1.5" nowarn="true" debug="true" debuglevel="lines,vars,source">
+		<javac srcdir="src" includes="**" encoding="utf-8" destdir="war/WEB-INF/classes" source="1.5" target="1.5" nowarn="true" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
 			<classpath refid="project.class.path" />
 		</javac>
 		<copy todir="war/WEB-INF/classes">
@@ -189,7 +189,7 @@
 
 	<!-- TESTING -->
 	<target name="javac.tests" depends="javac" description="Compiles test code">
-		<javac srcdir="test" includes="**" encoding="utf-8" source="1.5" target="1.5" nowarn="true" destdir="war/WEB-INF/classes" debug="true" debuglevel="lines,vars,source">
+		<javac srcdir="test" includes="**" encoding="utf-8" source="1.5" target="1.5" nowarn="true" destdir="war/WEB-INF/classes" debug="true" debuglevel="lines,vars,source" includeantruntime="false">
 			<classpath location="${junit.jar}" />
 			<classpath refid="project.class.path" />
 		</javac>
@@ -203,12 +203,25 @@
 		<pathelement location="${junit.jar}" />
 	</path>
 
-	<target name="test" depends="javac.tests" description="Test this project">
+	<target name="test1" depends="javac.tests" description="Test this project">
 		<mkdir dir="reports" />
-		<junit fork="yes">
+		<junit fork="yes" showoutput="yes">
 			<classpath refid="project.class.path" />
 			<classpath refid="test.classpath" />
 			<batchtest todir="reports">
+				<fileset dir="test">
+					<include name="**/*Test.java" />
+				</fileset>
+			</batchtest>
+			<formatter type="xml" />
+		</junit>
+	</target>
+
+	<target name="test" depends="javac.tests" description="Test this project">
+		<junit fork="yes" includeantruntime="false" showoutput="true">
+			<classpath refid="project.class.path" />
+			<classpath refid="test.classpath" />
+			<batchtest >
 				<fileset dir="test">
 					<include name="**/*Test.java" />
 				</fileset>
