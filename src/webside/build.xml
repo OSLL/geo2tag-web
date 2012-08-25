@@ -221,13 +221,16 @@
 		<junit fork="yes" includeantruntime="false" showoutput="true">
 			<classpath refid="project.class.path" />
 			<classpath refid="test.classpath" />
-			<batchtest >
+			<batchtest todir="reports">
 				<fileset dir="test">
 					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
 			<formatter type="xml" />
 		</junit>
+		<concat>
+			<fileset dir="reports"/>
+		</concat>
 	</target>
 
 	<!-- TARGET FOR ECLIPSE IDE -->
