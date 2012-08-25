@@ -213,7 +213,7 @@
 					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
-			<formatter type="plain" />
+			<formatter type="xml" />
 		</junit>
 	</target>
 
