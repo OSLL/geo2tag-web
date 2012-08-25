@@ -229,8 +229,8 @@
 			</batchtest>
 			<formatter type="xml" />
 		</junit>
-		<concat>
-			<fileset dir="reports"/>
+		<concat destfile="geo2tag-web.unit.xml">
+			<fileset dir="reports" />
 		</concat>
 	</target>
 
