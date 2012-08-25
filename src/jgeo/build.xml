@@ -41,6 +41,7 @@
 	<target name="javac" description="Compile java source to bytecode">
 		<mkdir dir="bin"/>
 		<javac 
+			includeantruntime="false"
 			srcdir="src" 
 			includes="**" 
 			encoding="utf-8" 
