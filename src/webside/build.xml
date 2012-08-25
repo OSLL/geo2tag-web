@@ -218,6 +218,7 @@
 	</target>
 
 	<target name="test" depends="javac.tests" description="Test this project">
+		<mkdir dir="reports"/>
 		<junit fork="yes" includeantruntime="false" showoutput="true">
 			<classpath refid="project.class.path" />
 			<classpath refid="test.classpath" />
